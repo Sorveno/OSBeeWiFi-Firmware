@@ -25,7 +25,7 @@
   #define BLYNK_PRINT Serial
 #endif
 
-#include <BlynkSimpleEsp8266.h>
+//#include <BlynkSimpleEsp8266.h>
 #include "TimeLib.h"
 #include "OSBeeWiFi.h"
 #include "espconnect.h"
@@ -34,17 +34,17 @@
 OSBeeWiFi osb;
 ProgramData pd;
 ESP8266WebServer *server = NULL;
-BlynkWifi Blynk(_blynkTransport);
+//BlynkWifi Blynk(_blynkTransport);
 SSD1306& disp = OSBeeWiFi::display;
 
 static uint16_t led_blink_ms = LED_FAST_BLINK;
 
-WidgetLED blynk_led1(BLYNK_S1);
-WidgetLED blynk_led2(BLYNK_S2);
-WidgetLED blynk_led3(BLYNK_S3);
-WidgetLCD blynk_lcd(BLYNK_LCD);
+//WidgetLED blynk_led1(BLYNK_S1);
+//WidgetLED blynk_led2(BLYNK_S2);
+//WidgetLED blynk_led3(BLYNK_S3);
+//WidgetLCD blynk_lcd(BLYNK_LCD);
 
-WidgetLED *blynk_leds[] = {&blynk_led1, &blynk_led2, &blynk_led3};
+//WidgetLED *blynk_leds[] = {&blynk_led1, &blynk_led2, &blynk_led3};
 
 static String scanned_ssids;
 static bool curr_cloud_access_en = false;
@@ -877,7 +877,7 @@ void process_button() {
 void check_status() {
   static ulong checkstatus_timeout = 0;
   if(curr_utc_time > checkstatus_timeout) {
-    if(curr_cloud_access_en && Blynk.connected()) {
+    /*if(curr_cloud_access_en && Blynk.connected()) {
       byte i, zbits;
       for(i=0;i<MAX_NUMBER_ZONES;i++) {
         zbits = osb.curr_zbits;
@@ -897,18 +897,18 @@ void check_status() {
         }
         str += F(": ");        
         str += toHMS(pd.curr_prog_remaining_time);
-        blynk_lcd.print(0, 0, str);
+        //blynk_lcd.print(0, 0, str);
         
         str = F("Task ");
         str += (pd.curr_task_index+1);
         str += F(": ");
         str += toHMS(pd.curr_task_remaining_time);
-        blynk_lcd.print(0, 1, str);
+        //blynk_lcd.print(0, 1, str);
       } else {
-        blynk_lcd.print(0, 0, "[Idle]          ");
-        blynk_lcd.print(0, 1, get_ip(WiFi.localIP())+F("      "));
+        //blynk_lcd.print(0, 0, "[Idle]          ");
+        //blynk_lcd.print(0, 1, get_ip(WiFi.localIP())+F("      "));
       }
-    }
+    }*/
     if(osb.program_busy)  checkstatus_timeout = curr_utc_time + 2;  // when program is running, update more frequently
     else checkstatus_timeout = curr_utc_time + 5;
   }
@@ -1081,8 +1081,8 @@ void do_loop() {
       server->begin();
 
       if(curr_cloud_access_en) {
-        Blynk.begin(osb.options[OPTION_AUTH].sval.c_str());
-        Blynk.connect();
+        //Blynk.begin(osb.options[OPTION_AUTH].sval.c_str());
+        //Blynk.connect();
       }
       osb.state = OSB_STATE_CONNECTED;      
       led_blink_ms = 0;
@@ -1103,8 +1103,8 @@ void do_loop() {
     else {
       if(WiFi.status() == WL_CONNECTED) {
         server->handleClient();
-        if(curr_cloud_access_en)
-          Blynk.run();
+        //if(curr_cloud_access_en)
+          //Blynk.run();
       } else {
         osb.state = OSB_STATE_INITIAL;
       }
@@ -1191,7 +1191,7 @@ void do_loop() {
     osb.apply_zbits();
   }
 }
-
+/*
 // Handle Blynk Requests
 static byte  blynk_test_zone = 255;
 static ulong blynk_test_dur = 60;
@@ -1223,4 +1223,4 @@ BLYNK_WRITE(BLYNK_RUN_PROG) {
   if(param.asInt()) {
     start_program(blynk_prog);
   }
-}
+}*/

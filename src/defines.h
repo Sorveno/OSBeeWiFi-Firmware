@@ -64,16 +64,16 @@
 #define MAX_NUMBER_ZONES         3
 
 // Blynk pin defines
-#define BLYNK_RESET V0
-#define BLYNK_S1    V1  // zone status
-#define BLYNK_S2    V2
-#define BLYNK_S3    V3
-#define BLYNK_TEST_ZONE   V4
-#define BLYNK_TEST_DUR    V5
-#define BLYNK_RUN_TEST    V6
-#define BLYNK_PROG        V7
-#define BLYNK_RUN_PROG    V8
-#define BLYNK_LCD         V9
+//#define BLYNK_RESET V0
+//#define BLYNK_S1    V1  // zone status
+//#define BLYNK_S2    V2
+//#define BLYNK_S3    V3
+//#define BLYNK_TEST_ZONE   V4
+//#define BLYNK_TEST_DUR    V5
+//#define BLYNK_RUN_TEST    V6
+//#define BLYNK_PROG        V7
+//#define BLYNK_RUN_PROG    V8
+//#define BLYNK_LCD         V9
 
 #define MAX_LOG_RECORDS           200
 #define MANUAL_PROGRAM_INDEX      'M' // 77

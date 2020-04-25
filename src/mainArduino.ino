@@ -27,7 +27,7 @@
 #include <time.h>
 #include <TimeLib.h>
 #include <FS.h>
-#include <BlynkSimpleEsp8266.h>
+//#include <BlynkSimpleEsp8266.h>
 #include <Wire.h>
 #include <SSD1306.h>
 #include <i2crtc.h>
